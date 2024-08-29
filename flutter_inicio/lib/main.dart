@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -61,6 +63,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+
+              //Agregar imagen
+              SvgPicture.asset(
+                'assets/icons/i_1.svg',
+                width: 50,
+                height: 50,
+              ),
+
+
             const Text(
               'Contador Basico',
             ),
@@ -68,6 +79,8 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+
+
           ],
         ),
       ),
