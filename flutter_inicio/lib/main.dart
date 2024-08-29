@@ -13,16 +13,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Demostracion de Flutter',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 35, 196, 78)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 58, 183, 68)),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'demostracion de Flutter'),
+      home: const MyHomePage(title: 'Inicio'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
+
   final String title;
 
   @override
@@ -70,6 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
+      
     persistentFooterButtons: [
         Row(
           // Ordena los iconos en separación
