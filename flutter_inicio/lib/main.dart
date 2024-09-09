@@ -25,8 +25,8 @@ class MyApp extends StatelessWidget {
           seedColor: const Color.fromARGB(255, 217, 0, 255),
           brightness: Brightness.dark,
         ),
-        textTheme: TextTheme(
-          displayLarge: const TextStyle(
+        textTheme: const TextTheme(
+          displayLarge: TextStyle(
             fontFamily: 'PerfectBomber',
           ),
         ),

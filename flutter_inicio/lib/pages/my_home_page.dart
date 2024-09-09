@@ -28,11 +28,11 @@ class MyApp extends StatelessWidget {
             seedColor: const Color.fromARGB(255, 217, 0, 255),
             brightness: Brightness.dark,
             ),
-          textTheme: TextTheme(
-            //aplicacion de font a seccion
-            displayLarge: const TextStyle(
-             fontFamily:  'PerfectBomber',
-            ),
+          textTheme: const TextTheme(
+              //aplicacion de font a seccion
+              displayLarge: TextStyle(
+              fontFamily:  'PerfectBomber',
+              ),
           ),
       ),
       home: const MyHomePage(title: 'Inicio'),color: const Color.fromARGB(255, 255, 17, 0)
@@ -96,17 +96,17 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
 
             //modificacion al texto
-            Text(
+            const Text(
               'Contador Basico',
                 style: TextStyle(
-                color: const Color.fromARGB(255, 200, 0, 255),
+                color: Color.fromARGB(255, 200, 0, 255),
                 fontSize: 40,
               ),
             ),
             Text(
               '$_counter',
-              style: TextStyle(
-                color: const Color.fromARGB(255, 255, 255, 255),
+              style: const TextStyle(
+                color: Color.fromARGB(255, 255, 255, 255),
                 fontSize: 60,
               )
               
