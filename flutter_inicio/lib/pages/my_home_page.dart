@@ -9,8 +9,7 @@ void main() {
 class MyApp extends StatelessWidget {
   
   const MyApp({super.key});
-  
-  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
       //Agregamos el logger
@@ -53,12 +52,21 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  
-
+  String message = "  ";
+  String iconoactual='assets/icons/i_1.svg';
 
   void _incrementCounter() {
     setState(() {
       _counter++;
+      if (_counter == 5) 
+      {
+        message = "Derrota";
+        iconoactual = 'assets/icons/i_2.svg';
+      } else if (_counter == 10)
+      {
+        message = "Victoria";
+        iconoactual = 'assets/icons/i_3.svg';
+      }
     });
   }
   void _reduceCounter(){
@@ -69,12 +77,12 @@ class _MyHomePageState extends State<MyHomePage> {
   void _resetCounter(){
     setState(() {
       _counter=0;
+      message = 'assets/icons/i_1.svg';
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    //logger de myhomepage
     Logger logger=Logger();
     logger.i("Logger is working in MyHomePage!");
     return Scaffold(
@@ -82,68 +90,86 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-
-              //Agregar imagen
-              SvgPicture.asset(
-                'assets/icons/i_1.svg',
-                width: 50,
-                height: 50,
-              ),
-
-            //modificacion al texto
-            const Text(
-              'Contador Basico',
-                style: TextStyle(
-                color: Color.fromARGB(255, 200, 0, 255),
-                fontSize: 40,
-              ),
-            ),
-            Text(
-              '$_counter',
-              style: const TextStyle(
+       body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Card(
+            color: Colors.white.withOpacity(0.1),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                // Título
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    'Título',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 50,
+                    ),
+                  ),
+                ),
+                
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                 child: SvgPicture.asset(
+                  iconoactual,
+                  width: 100,
+                  height: 100,
+                ),
+                ),
+                // Mensaje de victoria o derrota
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    message,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 50,
+                    ),
+                  ),
+                ),
+                Padding(padding: const EdgeInsets.all(8.0),
+                child:Text(
+                '$_counter',
+                style: const TextStyle(
                 color: Color.fromARGB(255, 255, 255, 255),
                 fontSize: 60,
-              )
-              
-            ),
-
-
-          ],
-        ),
-      ),
-      //Cambio color del centro
-      backgroundColor: const Color.fromARGB(255, 0, 204, 255),
-    persistentFooterButtons: [
-        Row(
-          // Ordena los iconos en separación
-
+                    ),
+                  ),
+                ),
+                Row(
+                  
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             // Reducir contador
             FloatingActionButton(
                 onPressed: _reduceCounter,
-                child: const Icon(Icons.remove),
+                child:  Icon(Icons.remove),
                 tooltip: 'Menos'),
 
             // Reiniciar Contador
             FloatingActionButton(
                 onPressed: _resetCounter,
-                child: const Icon(Icons.restart_alt),
+                child:  Icon(Icons.restart_alt),
                 tooltip: 'Reiniciar'),
 
             // Aumentar Contador
             FloatingActionButton(
                 onPressed: _incrementCounter,
-                child: const Icon(Icons.add),
+                child:  Icon(Icons.add),
                 tooltip: 'Más'),
           ],
-        )
-      ]
+            ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      //Cambio color del centro
+      backgroundColor: const Color.fromARGB(255, 0, 204, 255),
     );
+    //implemetar juego
   }
 }
