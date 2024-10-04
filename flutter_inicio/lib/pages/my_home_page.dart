@@ -48,12 +48,38 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MyHomePage> createState() {
+    print('create state');
+    return _MyHomePageState();
+  }
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   
+   _Example1State() {
+    print('constructor, mounted: $mounted');
+  }
+  
+
+  @override
+  void initState() {
+    super.initState();
+    print('initState, mounted: $mounted');
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    print('didChangeDependencies, mounted: $mounted');
+  }
+
+  @override
+  void setState(VoidCallback fn) {
+    print('setState');
+    super.setState(fn);
+  }
+
 
 
   void _incrementCounter() {
@@ -76,7 +102,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     //logger de myhomepage
     Logger logger=Logger();
-    logger.i("Logger is working in MyHomePage!");
+    print('build method');
+    
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -146,4 +173,28 @@ class _MyHomePageState extends State<MyHomePage> {
       ]
     );
   }
+  @override
+  void didUpdateWidget(covariant MyHomePage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    print('didUpdateWidget, mounted: $mounted');
+  }
+
+  @override
+  void deactivate() {
+    super.deactivate();
+    print('deactivate, mounted: $mounted');
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    print('dispose, mounted: $mounted');
+  }
+
+  @override
+  void reassemble() {
+    super.reassemble();
+    print('reassemble, mounted: $mounted');
+  }
+
 }
