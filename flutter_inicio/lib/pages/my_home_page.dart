@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_inicio/pages/AppData.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:logger/logger.dart';
+import 'package:provider/provider.dart';
 import 'Detalles.dart';
 import 'Sobre.dart';
 import 'Auditoria.dart';
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (context)=> AppData(),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -141,19 +146,19 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             FloatingActionButton(
               heroTag: null,
-              onPressed: () => setState(() => _counter--),
+              onPressed: () => context.read<AppData>().decrementCounter(),
               child: const Icon(Icons.remove),
               tooltip: 'Menos',
             ),
             FloatingActionButton(
               heroTag: null,
-              onPressed: () => setState(() => _counter = 0),
+              onPressed: () => context.read<AppData>().resetCounter(),
               child: const Icon(Icons.restart_alt),
               tooltip: 'Reiniciar',
             ),
             FloatingActionButton(
               heroTag: null,
-              onPressed: () => setState(() => _counter++),
+              onPressed: () => context.read<AppData>().incrementCounter(),
               child: const Icon(Icons.add),
               tooltip: 'Más',
             ),
