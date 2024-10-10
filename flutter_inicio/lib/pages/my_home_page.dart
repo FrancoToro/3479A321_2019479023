@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_inicio/pages/AppData.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'Detalles.dart';
 import 'Sobre.dart';
 import 'Auditoria.dart';
+import 'AppData.dart';
+
 void main() {
-  runApp(ChangeNotifierProvider(
-    create: (context)=> AppData(),
-    child: const MyApp(),
-  ));
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => AppData(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -18,7 +21,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //Agregamos el logger
     var logger = Logger();
     logger.d("Logger is working!");
 
@@ -65,7 +67,6 @@ class _MyHomePageState extends State<MyHomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -73,34 +74,49 @@ class _MyHomePageState extends State<MyHomePage> {
             const DrawerHeader(
               decoration: BoxDecoration(
                 color: Colors.purpleAccent,
-                ),
-              child:  Text('Menu')
               ),
-          ListTile(
-            title: const Text('Inicio'),
-            onTap: () {
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            title: const Text('Detalles'),
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const Detalles()));
-            },
-          ),
-          ListTile(
-            title: const Text('Sobre'),
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const Sobre()));
-            },
-          ),
-          ListTile(
-            title: const Text('Auditoría'),
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const Auditoria()));
-            },
-          ),
-        ],
+              child: Text('Menu'),
+            ),
+            ListTile(
+              title: const Text('Inicio'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: const Text('Detalles'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Detalles(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('Sobre'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Sobre(),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('Auditoría'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Auditoria(),
+                  ),
+                );
+              },
+            ),
+          ],
         ),
       ),
       body: Center(
@@ -128,10 +144,11 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             ElevatedButton(
               onPressed: () {
-                // Navegar a la nueva ventana
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const Detalles()),
+                  MaterialPageRoute(
+                    builder: (context) => const Detalles(),
+                  ),
                 );
               },
               child: const Text('detalles'),

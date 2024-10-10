@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'AppData.dart';
 import 'Sobre.dart';
+import 'Auditoria.dart';
 
 class Detalles extends StatelessWidget {
   const Detalles({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Al acceder a la pantalla Detalles, registrar la acción
     context.read<AppData>().actions.add("Acceso a la pantalla Detalles");
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Detalles'),
@@ -26,7 +25,6 @@ class Detalles extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    // Al acceder a la pantalla Sobre, registrar la acción
                     context.read<AppData>().actions.add("Acceso a la pantalla Sobre");
                     Navigator.push(
                       context,
