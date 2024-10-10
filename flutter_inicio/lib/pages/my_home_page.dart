@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:logger/logger.dart';
 import 'Detalles.dart';
 import 'Sobre.dart';
+import 'Auditoria.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -58,6 +59,44 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
+      ),
+
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.purpleAccent,
+                ),
+              child:  Text('Menu')
+              ),
+          ListTile(
+            title: const Text('Inicio'),
+            onTap: () {
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            title: const Text('Detalles'),
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const Detalles()));
+            },
+          ),
+          ListTile(
+            title: const Text('Sobre'),
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const Sobre()));
+            },
+          ),
+          ListTile(
+            title: const Text('Auditoría'),
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const Auditoria()));
+            },
+          ),
+        ],
+        ),
       ),
       body: Center(
         child: Column(
