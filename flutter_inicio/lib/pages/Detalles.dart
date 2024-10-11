@@ -9,7 +9,9 @@ class Detalles extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    context.read<AppData>().actions.add("Acceso a la pantalla Detalles");
+    final appData = context.watch<AppData>();
+    appData.addAction(
+        'Acceso a Inicio');
     return Scaffold(
       appBar: AppBar(
         title: const Text('Detalles'),

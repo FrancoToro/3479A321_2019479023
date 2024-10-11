@@ -23,4 +23,9 @@ class AppData extends ChangeNotifier {
     actions.add("Reinició contador");
     notifyListeners();
   }
+
+  void addAction(String action) {
+    actions.add(action);
+    notifyListeners();
+  }
 }

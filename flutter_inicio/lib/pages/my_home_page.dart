@@ -21,6 +21,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appData = context.watch<AppData>();
+    appData.addAction(
+        'Acceso a Inicio');
     var logger = Logger();
     logger.d("Logger is working!");
 

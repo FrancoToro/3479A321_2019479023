@@ -7,6 +7,9 @@ class Auditoria extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appData = context.watch<AppData>();
+    appData.addAction(
+        'Acceso a Auditorio');
     List<String> actions = context.watch<AppData>().actions;
 
     return Scaffold(
