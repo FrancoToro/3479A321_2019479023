@@ -6,6 +6,7 @@ import 'pages/my_home_page.dart';
 import 'pages/AppData.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     ChangeNotifierProvider(
       create: (context) => AppData(),
