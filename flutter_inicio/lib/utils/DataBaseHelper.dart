@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:flutter_inicio/pages/my_home_page.dart';
 import 'dart:io';
 
 // Clase DatabaseHelper para manejar la base de datos.
