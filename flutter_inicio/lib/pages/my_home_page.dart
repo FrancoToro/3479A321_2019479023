@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:logger/logger.dart';
 import 'package:provider/provider.dart';
 import 'Detalles.dart';
 import 'Sobre.dart';
 import 'Auditoria.dart';
 import 'AppData.dart';
+import 'Preferencias.dart';
 
 void main() {
   runApp(
@@ -19,6 +21,7 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  
   @override
   Widget build(BuildContext context) {
     final appData = context.watch<AppData>();
@@ -59,9 +62,25 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  String _userName = 'Usuario'; // Variable para almacenar el nombre del usuario
 
+  // Método para cargar las preferencias
+  Future<void> _loadPreferences() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _userName = prefs.getString('userName') ?? 'Usuario';
+      _counter = prefs.getInt('counter') ?? 0;
+    });
+  }
+
+ @override
+  void initState() {
+    super.initState();
+    _loadPreferences(); // Cargar las preferencias al iniciar la pantalla
+  }
   @override
   Widget build(BuildContext context) {
+    _loadPreferences();
     Logger logger = Logger();
     logger.d("Building MyHomePage");
 
@@ -119,6 +138,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               },
             ),
+            ListTile(
+              title: const Text('Preferencias'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>  PreferenceApp(),
+                    
+                  ),
+                ).then((_) {
+                    _loadPreferences(); // Recarga las preferencias cuando vuelves de la pantalla Preferencia
+                });
+              },
+            )
           ],
         ),
       ),
@@ -126,13 +159,8 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            SvgPicture.asset(
-              'assets/icons/i_1.svg',
-              width: 50,
-              height: 50,
-            ),
-            const Text(
-              'Contador Básico',
+            Text(
+              'Hola $_userName',
               style: TextStyle(
                 color: Color.fromARGB(255, 200, 0, 255),
                 fontSize: 40,
@@ -145,46 +173,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 fontSize: 60,
               ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const Detalles(),
-                  ),
-                );
-              },
-              child: const Text('detalles'),
-            ),
           ],
         ),
       ),
       backgroundColor: const Color.fromARGB(255, 0, 204, 255),
-      persistentFooterButtons: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            FloatingActionButton(
-              heroTag: null,
-              onPressed: () => context.read<AppData>().decrementCounter(),
-              child: const Icon(Icons.remove),
-              tooltip: 'Menos',
-            ),
-            FloatingActionButton(
-              heroTag: null,
-              onPressed: () => context.read<AppData>().resetCounter(),
-              child: const Icon(Icons.restart_alt),
-              tooltip: 'Reiniciar',
-            ),
-            FloatingActionButton(
-              heroTag: null,
-              onPressed: () => context.read<AppData>().incrementCounter(),
-              child: const Icon(Icons.add),
-              tooltip: 'Más',
-            ),
-          ],
-        )
-      ],
     );
   }
 }
