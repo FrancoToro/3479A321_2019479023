@@ -66,7 +66,6 @@ class InformacionAuditoria {
     };
   }
 
-  // Convierte un Map a un objeto InformacionAuditoria
   factory InformacionAuditoria.fromMap(Map<String, dynamic> map) {
     return InformacionAuditoria(
       id: map['id'] != null ? map['id'] as int : null, 
